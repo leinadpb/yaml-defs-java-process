@@ -1,0 +1,11 @@
+
+# Details of a user
+user: Daniel Pena
+ordered: true
+steps:
+  -
+    stepName: email
+    order: 1
+  -
+    stepName: hello
+    order: 2
