@@ -1,6 +1,7 @@
 package workflow.steps;
 
 import workflow.BaseStep;
+import workflow.exception.ExecutionStepException;
 import workflow.models.ProcessedCommand;
 
 public class InterpretCAI extends BaseStep {
@@ -15,7 +16,7 @@ public class InterpretCAI extends BaseStep {
 
 
     @Override
-    public void execute() {
+    public void execute() throws ExecutionStepException {
         // TODO: implement
         System.out.println("CAI command interpreted!");
     }

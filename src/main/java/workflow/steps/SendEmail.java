@@ -2,18 +2,19 @@ package workflow.steps;
 
 import workflow.BaseStep;
 import workflow.ProgramInfo;
+import workflow.exception.ExecutionStepException;
+
 import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendEmail extends BaseStep {
 
-    ProgramInfo programInfo;
     MimeMessage simpleMessage;
 
-    public SendEmail(ProgramInfo programInfo) {
-
-        super(BaseStep.EMAIL_STEP);
+    public SendEmail(ProgramInfo info) {
+        super(BaseStep.EMAIL_STEP, info);
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -21,17 +22,15 @@ public class SendEmail extends BaseStep {
 
         Session mailSession = Session.getDefaultInstance(props);
         simpleMessage = new MimeMessage(mailSession);
-
-        programInfo = programInfo;
     }
 
     @Override
-    public void execute() {
+    public void execute() throws ExecutionStepException {
         try {
-//            Transport.send(simpleMessage);
-            System.out.println("Message was sent! to address: " + programInfo.getToMail());
+            Transport.send(simpleMessage);
+//            System.out.println("Message was sent! to address: " + getInfo().getToMail());
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new ExecutionStepException("Error sending msg: " + e.getMessage());
         }
     }
 

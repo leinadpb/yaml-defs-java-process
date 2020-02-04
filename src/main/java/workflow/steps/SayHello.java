@@ -2,6 +2,7 @@ package workflow.steps;
 
 import workflow.BaseStep;
 import workflow.ProgramInfo;
+import workflow.exception.ExecutionStepException;
 
 public class SayHello extends BaseStep {
 
@@ -10,7 +11,7 @@ public class SayHello extends BaseStep {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws ExecutionStepException {
         // TODO: implement
         System.out.println("HOLA!");
     }

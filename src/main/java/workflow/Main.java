@@ -14,6 +14,12 @@ public class Main {
 
             System.out.println(workflow.state);
 
+            workflow.execute();
+
+            System.out.println(workflow.state);
+
+            System.out.println(workflow.getResult());
+
         } catch (Exception e) {
             e.printStackTrace();
         }

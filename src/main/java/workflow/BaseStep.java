@@ -1,5 +1,7 @@
 package workflow;
 
+import workflow.exception.ExecutionStepException;
+
 public abstract class BaseStep {
 
     public static final String INTERPRETER_STEP = "interpreter-step";
@@ -19,8 +21,8 @@ public abstract class BaseStep {
         this.uniqueId = uniqueId;
         this.info = info;
     }
-    
-    public abstract void execute();
+
+    public abstract void execute() throws ExecutionStepException;
 
 
     public String getUniqueId() {
@@ -45,5 +47,13 @@ public abstract class BaseStep {
 
     public void setStepName(String stepName) {
         this.stepName = stepName;
+    }
+
+    public ProgramInfo getInfo() {
+        return info;
+    }
+
+    public void setInfo(ProgramInfo info) {
+        this.info = info;
     }
 }
